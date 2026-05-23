@@ -16,7 +16,6 @@ import { BlogPostCard } from './components/BlogPostCard'
 import { BlogListPage } from './components/BlogListPage'
 import { BlogListScroll } from './components/BlogListScroll'
 import { Footer } from './components/Footer'
-import { HomeHero } from './components/HomeHero'
 import { PostLock } from './components/PostLock'
 import { PostMeta } from './components/PostMeta'
 import SearchInput from './components/SearchInput'
@@ -157,12 +156,7 @@ const LayoutBase = (props) => {
  * @returns
  */
 const LayoutIndex = (props) => {
-  return (
-    <>
-      <HomeHero />
-      <LayoutPostList {...props} />
-    </>
-  )
+  return <LayoutPostList {...props} />
 }
 
 /**
