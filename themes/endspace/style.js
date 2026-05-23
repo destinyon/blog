@@ -873,6 +873,117 @@ export const Style = () => {
       .ef-btn:hover .ef-btn-text {
         color: #ffffff !important;
       }
+
+      /* ============================================
+         Celeste Homepage Hero
+         ============================================ */
+      .celeste-hero {
+        min-height: clamp(520px, 72vh, 780px);
+        display: flex;
+        align-items: flex-end;
+        padding: clamp(1.25rem, 4vw, 3.5rem);
+        border-color: rgba(24, 24, 27, 0.22);
+      }
+
+      .celeste-hero__image,
+      .celeste-hero__overlay {
+        position: absolute;
+        inset: 0;
+      }
+
+      .celeste-hero__image {
+        background-image: url('/images/celeste-hero.jpg');
+        background-size: cover;
+        background-position: center;
+        transform: scale(1.01);
+      }
+
+      .celeste-hero__overlay {
+        background:
+          linear-gradient(90deg, rgba(9, 9, 11, 0.78), rgba(9, 9, 11, 0.36) 48%, rgba(9, 9, 11, 0.12)),
+          linear-gradient(0deg, rgba(9, 9, 11, 0.72), rgba(9, 9, 11, 0.04) 45%);
+      }
+
+      .celeste-hero__content {
+        position: relative;
+        z-index: 1;
+        max-width: 760px;
+        color: #fffaf2;
+      }
+
+      .celeste-hero__eyebrow {
+        margin-bottom: 0.75rem;
+        color: #fbfb45;
+      }
+
+      .celeste-hero__title {
+        font-size: clamp(3.5rem, 10vw, 8rem);
+        line-height: 0.88;
+        font-weight: 900;
+        letter-spacing: 0;
+        margin-bottom: 1.25rem;
+        text-wrap: balance;
+      }
+
+      .celeste-hero__description {
+        max-width: 36rem;
+        font-size: clamp(1rem, 2vw, 1.35rem);
+        line-height: 1.7;
+        color: rgba(255, 250, 242, 0.88);
+      }
+
+      .celeste-hero__links {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 0.75rem;
+        margin-top: 2rem;
+      }
+
+      .celeste-hero__link {
+        min-height: 5.25rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        border: 1px solid rgba(255, 250, 242, 0.34);
+        background: rgba(255, 250, 242, 0.12);
+        color: #fffaf2 !important;
+        padding: 0.9rem;
+        text-decoration: none !important;
+        backdrop-filter: blur(10px);
+        transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+      }
+
+      .celeste-hero__link:hover {
+        transform: translateY(-3px);
+        background: rgba(255, 250, 242, 0.2);
+        border-color: #fbfb45;
+      }
+
+      .celeste-hero__link span {
+        font-family: 'JetBrains Mono', 'Courier New', monospace;
+        font-size: 0.72rem;
+        color: #fbfb45;
+      }
+
+      .celeste-hero__link strong {
+        font-size: 1.05rem;
+      }
+
+      @media (max-width: 767px) {
+        .celeste-hero {
+          min-height: 620px;
+          align-items: flex-end;
+        }
+
+        .celeste-hero__overlay {
+          background:
+            linear-gradient(0deg, rgba(9, 9, 11, 0.86), rgba(9, 9, 11, 0.38) 65%, rgba(9, 9, 11, 0.18));
+        }
+
+        .celeste-hero__links {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
     `}</style>
   )
 }
