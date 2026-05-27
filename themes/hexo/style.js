@@ -26,13 +26,23 @@ const Style = () => {
       // 底色
       body:has(#theme-hexo) {
         background:
-          linear-gradient(180deg, rgba(23, 18, 34, 0.18), rgba(255, 244, 231, 0.5) 34%, rgba(255, 250, 245, 0.76) 100%),
-          var(--hexo-site-bg-image) center top / cover fixed no-repeat;
+          linear-gradient(
+            180deg,
+            rgba(23, 18, 34, 0.18),
+            rgba(255, 244, 231, 0.5) 34%,
+            rgba(255, 250, 245, 0.76) 100%
+          ),
+          var(--hexo-site-bg-image) center 38% / cover fixed no-repeat;
       }
       .dark body:has(#theme-hexo) {
         background:
-          linear-gradient(180deg, rgba(11, 9, 17, 0.34), rgba(25, 18, 31, 0.68) 42%, rgba(16, 14, 22, 0.9) 100%),
-          var(--hexo-site-bg-image) center top / cover fixed no-repeat;
+          linear-gradient(
+            180deg,
+            rgba(11, 9, 17, 0.34),
+            rgba(25, 18, 31, 0.68) 42%,
+            rgba(16, 14, 22, 0.9) 100%
+          ),
+          var(--hexo-site-bg-image) center 38% / cover fixed no-repeat;
       }
 
       #theme-hexo {
@@ -42,14 +52,22 @@ const Style = () => {
 
       #theme-hexo .hexo-background-shell {
         background:
-          linear-gradient(90deg, rgba(255, 250, 245, 0.82), rgba(255, 247, 237, 0.62)),
-          var(--hexo-site-bg-image) center top / cover fixed no-repeat;
+          linear-gradient(
+            90deg,
+            rgba(255, 250, 245, 0.82),
+            rgba(255, 247, 237, 0.62)
+          ),
+          var(--hexo-site-bg-image) center 38% / cover fixed no-repeat;
       }
 
       .dark #theme-hexo .hexo-background-shell {
         background:
-          linear-gradient(90deg, rgba(15, 13, 22, 0.82), rgba(22, 16, 28, 0.72)),
-          var(--hexo-site-bg-image) center top / cover fixed no-repeat;
+          linear-gradient(
+            90deg,
+            rgba(15, 13, 22, 0.82),
+            rgba(22, 16, 28, 0.72)
+          ),
+          var(--hexo-site-bg-image) center 38% / cover fixed no-repeat;
       }
 
       #theme-hexo #container-inner {
@@ -76,12 +94,17 @@ const Style = () => {
 
       #theme-hexo .hexo-entry-cover {
         opacity: 0.72;
-        filter: saturate(1.08) contrast(1.02);
+        filter: saturate(1.08) contrast(1.03);
+        image-rendering: auto;
       }
 
       #theme-hexo #header {
-        background:
-          linear-gradient(180deg, #20192b 0%, #392530 56%, #fff1e2 100%);
+        background: linear-gradient(
+          180deg,
+          #20192b 0%,
+          #392530 56%,
+          #fff1e2 100%
+        );
       }
 
       #theme-hexo #header::after {
@@ -90,8 +113,17 @@ const Style = () => {
         inset: 0;
         pointer-events: none;
         background:
-          linear-gradient(180deg, rgba(18, 13, 25, 0.18), rgba(18, 13, 25, 0.08) 48%, rgba(255, 241, 226, 0.34) 100%),
-          radial-gradient(circle at 50% 42%, rgba(255, 214, 163, 0.18), transparent 36%);
+          linear-gradient(
+            180deg,
+            rgba(18, 13, 25, 0.18),
+            rgba(18, 13, 25, 0.08) 48%,
+            rgba(255, 241, 226, 0.34) 100%
+          ),
+          radial-gradient(
+            circle at 50% 42%,
+            rgba(255, 214, 163, 0.18),
+            transparent 36%
+          );
       }
 
       #theme-hexo #header > .text-white {
