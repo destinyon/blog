@@ -46,15 +46,13 @@ const MyApp = ({ Component, pageProps }) => {
   const notionTheme = pageProps?.NOTION_CONFIG?.THEME
   const configTheme = BLOG.THEME
   const theme = useMemo(() => {
-    return queryTheme || notionTheme || configTheme
-  }, [queryTheme, notionTheme, configTheme])
+    return queryTheme || configTheme
+  }, [queryTheme, configTheme])
 
   useEffect(() => {
     const source = queryTheme
       ? 'url:theme'
-      : notionTheme
-        ? 'notion:config'
-        : 'blog/env:config'
+      : 'blog/env:config'
     console.log(
       '[ThemeResolver][runtime-final]',
       JSON.stringify(

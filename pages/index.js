@@ -33,7 +33,7 @@ export async function getStaticProps(req) {
     const configTheme = BLOG.THEME
     const notionTheme = props?.NOTION_CONFIG?.THEME || null
     const finalTheme = siteConfig('THEME', BLOG.THEME, props?.NOTION_CONFIG)
-    const source = notionTheme ? 'notion:config' : 'blog/env:config'
+    const source = 'blog/env:config'
     console.log(
       '[ThemeResolver][server-static-props]',
       JSON.stringify({

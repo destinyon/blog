@@ -10,19 +10,96 @@ import CONFIG from './config'
 const Style = () => {
   // 从配置中获取主题色，如果没有配置则使用默认值 #928CEE
   const themeColor = siteConfig('HEXO_THEME_COLOR', '#928CEE', CONFIG)
+  const backgroundImage = siteConfig(
+    'HEXO_SITE_BACKGROUND_IMAGE',
+    '/images/hexo-site-background.jpg',
+    CONFIG
+  )
 
   return (
     <style jsx global>{`
       :root {
         --theme-color: ${themeColor};
+        --hexo-site-bg-image: url('${backgroundImage}');
       }
 
       // 底色
-      #theme-hexo body {
-        background-color: #f5f5f5;
+      body:has(#theme-hexo) {
+        background:
+          linear-gradient(180deg, rgba(23, 18, 34, 0.18), rgba(255, 244, 231, 0.5) 34%, rgba(255, 250, 245, 0.76) 100%),
+          var(--hexo-site-bg-image) center top / cover fixed no-repeat;
       }
-      .dark #theme-hexo body {
-        background-color: black;
+      .dark body:has(#theme-hexo) {
+        background:
+          linear-gradient(180deg, rgba(11, 9, 17, 0.34), rgba(25, 18, 31, 0.68) 42%, rgba(16, 14, 22, 0.9) 100%),
+          var(--hexo-site-bg-image) center top / cover fixed no-repeat;
+      }
+
+      #theme-hexo {
+        background: transparent;
+        min-height: 100vh;
+      }
+
+      #theme-hexo .hexo-background-shell {
+        background:
+          linear-gradient(90deg, rgba(255, 250, 245, 0.82), rgba(255, 247, 237, 0.62)),
+          var(--hexo-site-bg-image) center top / cover fixed no-repeat;
+      }
+
+      .dark #theme-hexo .hexo-background-shell {
+        background:
+          linear-gradient(90deg, rgba(15, 13, 22, 0.82), rgba(22, 16, 28, 0.72)),
+          var(--hexo-site-bg-image) center top / cover fixed no-repeat;
+      }
+
+      #theme-hexo #container-inner {
+        padding-top: 0.75rem;
+        padding-bottom: 1.5rem;
+      }
+
+      #theme-hexo .card,
+      #theme-hexo #blog-post-card,
+      #theme-hexo .article {
+        background-color: rgba(255, 255, 255, 0.82) !important;
+        border-color: rgba(255, 201, 135, 0.34) !important;
+        box-shadow: 0 18px 48px rgba(76, 48, 66, 0.14);
+        backdrop-filter: blur(18px) saturate(1.12);
+        -webkit-backdrop-filter: blur(18px) saturate(1.12);
+      }
+
+      .dark #theme-hexo .card,
+      .dark #theme-hexo #blog-post-card,
+      .dark #theme-hexo .article {
+        background-color: rgba(22, 18, 29, 0.82) !important;
+        border-color: rgba(255, 201, 135, 0.16) !important;
+      }
+
+      #theme-hexo .hexo-entry-cover {
+        opacity: 0.72;
+        filter: saturate(1.08) contrast(1.02);
+      }
+
+      #theme-hexo #header {
+        background:
+          linear-gradient(180deg, #20192b 0%, #392530 56%, #fff1e2 100%);
+      }
+
+      #theme-hexo #header::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background:
+          linear-gradient(180deg, rgba(18, 13, 25, 0.18), rgba(18, 13, 25, 0.08) 48%, rgba(255, 241, 226, 0.34) 100%),
+          radial-gradient(circle at 50% 42%, rgba(255, 214, 163, 0.18), transparent 36%);
+      }
+
+      #theme-hexo #header > .text-white {
+        z-index: 2;
+      }
+
+      #theme-hexo .header-cover::before {
+        z-index: 1;
       }
 
       /*  菜单下划线动画 */

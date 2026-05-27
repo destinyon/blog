@@ -45,6 +45,8 @@ const CONFIG = {
   HEXO_THEME_COLOR: '#928CEE', // 主题色配置（默认为 #928CEE）
 
   /** 文章详情页客户端切换时，主栏显示卡片+转圈占位（无全屏遮罩；已有独立 LoadingCover 的主题无需此项） */
+  HEXO_HOME_BANNER_IMAGE: '/images/hexo-entry-cover.png',
+  HEXO_SITE_BACKGROUND_IMAGE: '/images/hexo-site-background.jpg',
   HEXO_ARTICLE_ROUTE_LOADING: true
 }
 export default CONFIG
