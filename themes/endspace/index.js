@@ -27,9 +27,25 @@ import MobileNav from './components/MobileNav'
 import ArticleAdjacent from './components/ArticleAdjacent'
 import FloatingControls from './components/FloatingControls'
 import useViewportScale from './components/useViewportScale'
+import { CelesteStyle } from './components/CelesteStyle'
 import CONFIG from './config'
 import { Style } from './style'
 import { IconLoader2 } from '@tabler/icons-react'
+
+const CELESTE_STYLE_NAMES = ['aurora', 'pearl', 'rose']
+const CELESTE_DEFAULT_WATERMARK = 'CELESTE'
+
+const normalizeCelesteStyle = (value) => {
+  const raw = Array.isArray(value) ? value[0] : value
+  const styleName = String(raw || '').toLowerCase()
+  return CELESTE_STYLE_NAMES.includes(styleName) ? styleName : 'aurora'
+}
+
+const getCelesteText = (value) => {
+  return value && !String(value).startsWith('CLOUD09')
+    ? value
+    : CELESTE_DEFAULT_WATERMARK
+}
 
 /**
  * Endspace Theme - Endfield Style
@@ -40,7 +56,12 @@ import { IconLoader2 } from '@tabler/icons-react'
 const LayoutBase = (props) => {
   const { children, post } = props
   const { onLoading, fullWidth, locale } = useGlobal()
+  const router = useRouter()
   const toc = post?.toc
+  const celesteStyle = normalizeCelesteStyle(
+    router.query.celeste ||
+      siteConfig('ENDSPACE_CELESTE_STYLE', 'aurora', CONFIG)
+  )
 
   // Article detail page vertical layout
   const LAYOUT_VERTICAL =
@@ -53,7 +74,7 @@ const LayoutBase = (props) => {
   const LOADING_COVER = siteConfig('ENDSPACE_LOADING_COVER', true, CONFIG)
 
   // Viewport scale - Endfield style (using hook default params: 1920x1080 landscape / 390x844 portrait)
-  useViewportScale()
+  useViewportScale({ minFontSize: 16, maxFontSize: 16 })
 
   const nestHostRef = useRef(null)
   useEffect(() => {
@@ -68,9 +89,10 @@ const LayoutBase = (props) => {
   return (
     <div
       id="theme-endspace"
-      className={`${siteConfig('FONT_STYLE')} min-h-screen relative`}
+      className={`${siteConfig('FONT_STYLE')} celeste-theme celeste-${celesteStyle} min-h-screen relative`}
     >
       <Style />
+      <CelesteStyle />
 
       {/* Nest: mount point for public/js/nest.js (reads zIndex/opacity/color/count attributes) */}
       {siteConfig('NEST') && (
@@ -120,12 +142,12 @@ const LayoutBase = (props) => {
               <Transition
                 show={!onLoading}
                 appear={true}
-                enter="transition ease-in-out duration-700 transform order-first"
-                enterFrom="opacity-0 translate-y-16"
-                enterTo="opacity-100"
-                leave="transition ease-in-out duration-300 transform"
+                enter="transition ease-out duration-1000 transform-gpu order-first"
+                enterFrom="opacity-0 translate-y-8 scale-[0.985]"
+                enterTo="opacity-100 translate-y-0 scale-100"
+                leave="transition ease-in duration-300 transform-gpu"
                 leaveFrom="opacity-100 translate-y-0"
-                leaveTo="opacity-0 -translate-y-16"
+                leaveTo="opacity-0 -translate-y-6 scale-[0.99]"
                 unmount={false}
               >
                 {props.slotTop}
@@ -218,7 +240,7 @@ const LayoutSlug = (props) => {
             <div id="article-wrapper" className="endspace-frame p-8 md:p-12 mb-12">
                {/* Content Watermark/Background decoration - 可在config.js中自定义 */}
                <div className="absolute top-4 right-4 text-[var(--endspace-text-muted)] opacity-10 text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-black pointer-events-none select-none z-0">
-                 {siteConfig('ENDSPACE_ARTICLE_WATERMARK_TEXT', 'CLOUD09', CONFIG)}
+                 {getCelesteText(siteConfig('ENDSPACE_ARTICLE_WATERMARK_TEXT', 'CLOUD09', CONFIG))}
                </div>
                
               <div className="relative z-10">

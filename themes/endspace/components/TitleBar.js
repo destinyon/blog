@@ -6,7 +6,15 @@ import CONFIG from '../config'
  */
 export const TitleBar = ({ post }) => {
 
-  const marqueeText = siteConfig('ENDSPACE_BANNER_WATERMARK_TEXT', 'CLOUD09_SPACE', CONFIG)
+  const configuredMarquee = siteConfig(
+    'ENDSPACE_BANNER_WATERMARK_TEXT',
+    'CLOUD09_SPACE',
+    CONFIG
+  )
+  const marqueeText =
+    configuredMarquee && !String(configuredMarquee).startsWith('CLOUD09')
+      ? configuredMarquee
+      : 'CELESTE'
 
   return (
     <div className="relative py-20 md:py-28 border-b-2 border-[var(--endspace-border-base)] overflow-hidden bg-[var(--endspace-bg-base)]">
