@@ -8,6 +8,7 @@ import { GlobalStyle } from './GlobalStyle'
 import { initGoogleAdsense } from './GoogleAdsense'
 
 import Head from 'next/head'
+import BLOG from '@/blog.config'
 import ExternalScript from './ExternalScript'
 import WebWhiz from './Webwhiz'
 import { useGlobal } from '@/lib/global'
@@ -22,8 +23,10 @@ const ExternalPlugin = props => {
   // 读取自Notion的配置
   const { NOTION_CONFIG } = props
   const { lang } = useGlobal()
+  const router = useRouter()
   const DISABLE_PLUGIN = siteConfig('DISABLE_PLUGIN', null, NOTION_CONFIG)
   const THEME_SWITCH = siteConfig('THEME_SWITCH', null, NOTION_CONFIG)
+  const activeTheme = router.query?.theme || BLOG.THEME
   const DEBUG = siteConfig('DEBUG', null, NOTION_CONFIG)
   const ANALYTICS_ACKEE_TRACKER = siteConfig(
     'ANALYTICS_ACKEE_TRACKER',
@@ -163,7 +166,6 @@ const ExternalPlugin = props => {
     }
   }
 
-  const router = useRouter()
   useEffect(() => {
     // 异步渲染谷歌广告
     if (ADSENSE_GOOGLE_ID) {
@@ -197,7 +199,9 @@ const ExternalPlugin = props => {
       <GlobalStyle />
       {ENABLE_ICON_FONT && <IconFont />}
       {MOUSE_FOLLOW && <MouseFollow />}
-      {THEME_SWITCH && <ThemeSwitch />}
+      {THEME_SWITCH && activeTheme !== 'hexo' && (
+        <ThemeSwitch variant='float' />
+      )}
       {DEBUG && <DebugPanel />}
       {ANALYTICS_ACKEE_TRACKER && <Ackee />}
       {ANALYTICS_GOOGLE_ID && <Gtag />}
@@ -403,7 +407,12 @@ const ExternalPlugin = props => {
 
       {/* UMAMI 统计 */}
       {UMAMI_ID && (
-        <script async defer src={UMAMI_HOST} data-website-id={UMAMI_ID}></script>
+        <script
+          async
+          defer
+          src={UMAMI_HOST}
+          data-website-id={UMAMI_ID}
+        ></script>
       )}
 
       {/* 谷歌统计 */}

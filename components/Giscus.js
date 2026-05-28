@@ -18,7 +18,7 @@ const GiscusComponent = () => {
   const configuredTheme = siteConfig('COMMENT_GISCUS_THEME')
   const theme = configuredTheme || (isDarkMode ? 'dark' : 'light')
   useEffect(() => {
-    const syncGiscusQueryOutOfUrl = () => {
+    const syncGiscusQueryOutOfUrl = (mode = 'history') => {
       if (typeof window === 'undefined') {
         return
       }
@@ -28,7 +28,12 @@ const GiscusComponent = () => {
         return
       }
       window.history.replaceState(window.history.state, '', clean)
-      Router.replace(clean, undefined, { scroll: false, shallow: true }).catch(() => {})
+      if (mode === 'router') {
+        Router.replace(clean, undefined, {
+          scroll: false,
+          shallow: true
+        }).catch(() => {})
+      }
     }
 
     loadExternalResource('/js/giscus.js', 'js').then(() => {
@@ -38,7 +43,7 @@ const GiscusComponent = () => {
       syncGiscusQueryOutOfUrl()
     })
 
-    const onRouteDone = () => syncGiscusQueryOutOfUrl()
+    const onRouteDone = () => syncGiscusQueryOutOfUrl('router')
     Router.events.on('routeChangeComplete', onRouteDone)
     return () => {
       Router.events.off('routeChangeComplete', onRouteDone)
