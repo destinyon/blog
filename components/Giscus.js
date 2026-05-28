@@ -15,7 +15,8 @@ import { useEffect } from 'react'
 
 const GiscusComponent = () => {
   const { isDarkMode } = useGlobal()
-  const theme = isDarkMode ? 'dark' : 'light'
+  const configuredTheme = siteConfig('COMMENT_GISCUS_THEME')
+  const theme = configuredTheme || (isDarkMode ? 'dark' : 'light')
   useEffect(() => {
     const syncGiscusQueryOutOfUrl = () => {
       if (typeof window === 'undefined') {

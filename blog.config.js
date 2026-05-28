@@ -18,7 +18,8 @@ const BLOG = {
   AUTHOR: process.env.NEXT_PUBLIC_AUTHOR || 'Celeste', // 您的昵称 例如 tangly1024
   BIO:
     process.env.NEXT_PUBLIC_BIO ||
-    '学习记录、项目实践、技术笔记与生活片段。', // 作者简介
+    'Life is not out to get you.', // 作者简介
+  AVATAR: process.env.NEXT_PUBLIC_AVATAR || '/images/celeste-avatar.jpg', // 站点头像
   LINK: process.env.NEXT_PUBLIC_LINK || 'https://www.blog-celeste.top', // 网站地址
   KEYWORDS:
     process.env.NEXT_PUBLIC_KEYWORD ||
