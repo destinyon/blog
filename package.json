@@ -83,7 +83,7 @@
     "js-sha256": "^0.11.1",
     "memory-cache": "^0.2.0",
     "next": "^14.2.30",
-    "notion-client": "7.10.0",
+    "notion-client": "7.11.1",
     "notion-utils": "7.10.0",
     "p-limit": "^7.3.0",
     "react": "^18.3.1",
